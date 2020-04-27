@@ -1,0 +1,34 @@
+{% extends 'main/home.html' %}
+{% block content %}
+
+<form method="POST" action="{% url 'schedule' %}" >
+	{% csrf_token %}
+	<h2>From:</h2>
+<select name="source">
+{% for p in train_name %}
+	<option value="{{ p }}"> {{ p }} </option>
+{% endfor %}
+</select>
+<br>
+<button class="btn btn-success" style="margin-top: 10px" type="submit">Go</button>
+</form>		
+
+<div> 
+
+{% if flage == True %}
+	<table class="table">
+		<tr>
+			<th>Station name</th>
+			<th>Departure time</th>	
+		</tr>
+		{% for station in staions  %}
+				{{ station.station_name }}
+				{{ station.time }}
+			
+		{% endfor %}
+	</table>
+{% endif %}
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+
+	<title>Railway Ticket System</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/custom.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color: #ffffff">
+<div class="container row">
+	<div class="col-md-4" style="padding-left: 150px">
+	    <img id="logo" src="{% static 'main/image/Bangladeshrailwaylogo.jpg' %}" alt="logo"> 
+	</div>
+	<div class="col-md-8 row" id="headerfont" >
+		<div class="col-md-8">
+		    <h1>Bangladesh Railway</h1>
+		    <h4>Online ticket Booking system</h4>
+		</div>
+		<div class="col-md-4" style="padding-left: 210px">
+	    	<img id="logo" src="{% static 'main/image/bdgovlogo.png' %}" alt="logo"> 
+		</div>
+	</div>
+
+</div>
+
+	<div id="app" class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'home' %}">Home</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div id="navbarNavDropdown" class="navbar-collapse collapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'schedule' %}">Schedule</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Ticket Price</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'booking' %}">Purchase</a>
+					</li>
+
+				</ul>
+				<ul class="navbar-nav">
+				{% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{request.user.username}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+              </div>
+          </li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'register' %}">Register</a>
+					</li>
+				{% endif %}
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+    	{% if messages %}
+     	{% for message in messages %}
+      	<div class="alert alert-{{ message.tags }}">
+        	{{ message }}
+      	</div>
+       {% endfor %}
+    	{% endif %}
+  		{% block content %}
+  		
+  		{% endblock content %}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'main/base2.html' %}
+{% load static %}
+{% block content %}
+<section >
+	<img class="bgimg" src="{% static 'main/image/4.jpg' %}">
+</section>
+<br>
+<br>
+<br>
+<br>
+<section>
+	<div class="row"  style="max-height: 200px">
+		<div class="col-sm-2"></div>		
+		<div class="col-sm-3 card">
+		  <img class="card-img-top sz" src="{% static 'main/image/primeminister.jpg' %}" alt="image">
+			<div class="card-body">
+				<h4 class="card-title">Prime Minister</h4>
+				<p>The metro rail will save Bangladesh an annual economic loss of TK 200 billion equivalent to 1.5 percent of the country's gross domestic production and our most valiable TIME as well. </p>		
+			</div>
+		</div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-3 card">
+		  <img class="card-img-top sz" src="{% static 'main/image/railwayminister.jpg' %}" alt="image">
+			<div class="card-body">
+				<h4 class="card-title">Railway Minister</h4>
+				<p>Our Railway system will be the number one system throughout the world. </p>		
+			</div>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+</section>
+{% endblock content %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+  </head>
+  <body>
+
+    <header>
+      <table>
+        <tr>
+          <th>
+            <div id="headerleft">
+              <h1>Project name</h1>
+              <h2>Practicing html and css</h2>
+            </div>
+          </th>
+          <th> <a href="#" id="aa">username</a>
+          </th>
+        </tr>
+      </table>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Option1</a></li>
+        <li><a href="#">Option2</a></li>
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+            </div>
+          </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    
+      {% if messages %}
+       {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+       {% endfor %}
+      {% endif %}
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>
